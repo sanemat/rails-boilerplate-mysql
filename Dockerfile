@@ -11,10 +11,10 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
-COPY package.json /myapp/package.json
-COPY yarn.lock /myapp/yarn.lock
-RUN yarn install --check-files
-COPY . /myapp
+# COPY package.json /myapp/package.json
+# COPY yarn.lock /myapp/yarn.lock
+# RUN yarn install --check-files
+# COPY . /myapp
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
@@ -23,4 +23,4 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
