@@ -9,12 +9,12 @@ RUN apt-get update && apt-get install -y nodejs yarn default-mysql-client
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
-# COPY Gemfile.lock /myapp/Gemfile.lock
+COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
-# COPY package.json /myapp/package.json
-# COPY yarn.lock /myapp/yarn.lock
-# RUN yarn install --check-files
-# COPY . /myapp
+COPY package.json /myapp/package.json
+COPY yarn.lock /myapp/yarn.lock
+RUN yarn install --check-files
+COPY . /myapp
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
