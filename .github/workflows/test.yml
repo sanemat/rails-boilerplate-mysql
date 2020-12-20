@@ -1,0 +1,26 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: compose-up
+        shell: bash
+        run: |
+          docker-compose up -d
+      - name: Sleep for 20 seconds
+        uses: jakejarvis/wait-action@v0.1.0
+        with:
+          time: '20s'
+      - name: compose-run
+        shell: bash
+        run: |
+          docker-compose exec -T db service mysql status
+          docker-compose exec -T web rails t
