@@ -16,6 +16,9 @@ COPY yarn.lock /myapp/yarn.lock
 RUN yarn install --check-files
 COPY . /myapp
 
+COPY wait-for /usr/bin/
+RUN chmod +x /usr/bin/wait-for
+
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
