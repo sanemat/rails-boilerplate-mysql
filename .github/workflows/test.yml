@@ -15,6 +15,10 @@ jobs:
         shell: bash
         run: |
           docker-compose up -d
+      - name: Sleep for 20 seconds
+        uses: jakejarvis/wait-action@v0.1.0
+        with:
+          time: '20s'
       - name: compose-run
         shell: bash
         run: |
