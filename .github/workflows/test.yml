@@ -11,9 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: compose-run
+      - name: compose-up
         shell: bash
         run: |
           docker-compose up -d
+      - name: compose-run
+        shell: bash
+        run: |
           docker-compose exec -T db service mysql status
           docker-compose exec -T web rails t
