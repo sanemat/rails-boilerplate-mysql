@@ -15,4 +15,5 @@ jobs:
         shell: bash
         run: |
           docker-compose up -d
+          docker-compose exec -T db service mysql status
           docker-compose exec -T web rails t
